@@ -1,0 +1,75 @@
+menu "micro-ROS example-app settings"
+
+    config MICRO_ROS_APP_STACK
+        int "Stack the micro-ROS app (Bytes)"
+        default 16000
+        help
+        Stack size in Bytes of the micro-ROS app
+
+    config MICRO_ROS_APP_TASK_PRIO
+        int "Priority of the micro-ROS app"
+        default 5
+        help
+        Priority of micro-ros task higher value means higher priority
+        
+endmenu
+
+menu "Component - LEDRGB settings"
+    #######################
+    #    LEDRGB CONFIG    #
+    #######################
+            
+        config LED_STRIP_GPIO_NUM
+            int "LED RGB Red pin"
+            range 0 46
+            default 38
+            help
+                Select data pin for led rgb connection.
+
+        config LED_STRIP_RESOLUTION_HZ
+            int "LED Resolution HZ"
+            range 0 100000000
+            default 10000000
+            help
+                Select resolution for led rgb.
+
+        config LED_NUMBERS
+            int "Numbers LED"
+            range 0 512
+            default 1
+            help
+                Select Numbers led rgb.
+endmenu
+menu "Component - DalyBMS GPIO Settings"
+
+    #############################
+    #    DalyBMS GPIO CONFIG    #
+    #############################
+
+    config DALYBMS_WAKEUP_PIN
+        int "BMS wakeup pin"
+        range 0 46
+        default 6
+        help
+            Select wakeup pin for DalyBMS connection.
+
+    config DALYBMS_STARTUP_PIN
+        int "BMS startup pin"
+        range 0 46
+        default 5
+        help
+            Select startup pin for DalyBMS connection.
+
+    config DALYBMS_WD_PULSE_DURATION_MS 
+        int "BMS watchdog pulse duration MS"
+        default 500
+        help
+            Select pulse duration for DalyBMS watchdog.
+
+    config DALYBMS_WD_INTERVAL_MINUTES 
+        int "BMS watchdog intervale MIN"
+        default 10
+        help
+            Select intervale minutue for DalyBMS watchdog.
+
+endmenu

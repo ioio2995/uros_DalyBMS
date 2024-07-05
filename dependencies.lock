@@ -1,0 +1,30 @@
+dependencies:
+  idf:
+    component_hash: null
+    source:
+      type: idf
+    version: 5.2.2
+  ioio2995/dalybms:
+    component_hash: 2123d17cace527edea39436e1f4505536ef60f2fafbf2cfa2d3836da4b6acd89
+    source:
+      git: https://github.com/ioio2995/ESP_DalyBMS.git
+      path: .
+      type: git
+    version: 0e24d872e530d50a24b10f7cf4c44844f9cbbf33
+  ioio2995/ic_led_rgb:
+    component_hash: 5b1856b74e2f06b987f3ae2dc2c68180706363e7a2f4dcdb227e9e76af22fb48
+    source:
+      git: https://github.com/ioio2995/ESP_IC_Led_RGB.git
+      path: .
+      type: git
+    version: 4ffd55e25b6f4ceeffc00adbbf66e0e2177bde2e
+  micro-ros/micro_ros_espidf_component:
+    component_hash: 2e01cb94c9488ff0c94e90ac91f0d6256c3005b932ad3b95a0c2f50ef330f341
+    source:
+      git: https://github.com/micro-ROS/micro_ros_espidf_component.git
+      path: .
+      type: git
+    version: 37d75e82f20c9b460ab1a6371c7e6ecd93a9912f
+manifest_hash: 3d6ac68855b0282ee3a43afa8010f4589db4bd71a2ad237649b18c301b1ec737
+target: esp32s3
+version: 1.0.0
