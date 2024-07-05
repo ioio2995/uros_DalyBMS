@@ -25,13 +25,13 @@ uint8_t determine_battery_health(const std::vector<std::string>& errors) {
     }
 
     for (const auto& error : errors) {
-        if (error.find("overheat") != std::string::npos) {
+        if (error.find("temp high") != std::string::npos) {
             return sensor_msgs__msg__BatteryState__POWER_SUPPLY_HEALTH_OVERHEAT;
         }
-        if (error.find("overvoltage") != std::string::npos) {
+        if (error.find("SOC high level") != std::string::npos) {
             return sensor_msgs__msg__BatteryState__POWER_SUPPLY_HEALTH_OVERVOLTAGE;
         }
-        if (error.find("low voltage") != std::string::npos) {
+        if (error.find("SOC low level") != std::string::npos) {
             return sensor_msgs__msg__BatteryState__POWER_SUPPLY_HEALTH_DEAD;
         }
     }

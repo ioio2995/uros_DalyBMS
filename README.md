@@ -28,10 +28,11 @@ To use this firmware, follow these steps:
 
 1. **Install dependencies**: Ensure the ESP-IDF framework and micro-ROS are properly installed and configured.
 2. **Add Component**: Use `idf.py prepare` for upload components to `managed_components` directory of your ESP-IDF project.
-3. **Configuration**: Use `idf.py menuconfig` to modify "Component - LEDRGB settings" and "Component - DalyBMS GPIO Settings" as needed.
-4. **Build**: Use `idf.py build` to compile your project.
-5. **Flash**: Use `idf.py flash` to flash the firmware to your ESP32*.
-6. **Monitor**: Use `idf.py monitor` to monitor the serial messages sent by the ESP32*.
+3. **Remove hash**:  Use `rm ./managed_components/micro-ros__micro_ros_espidf_component/.component_hash` to disable the hash of micro-ros__micro_ros_espidf_component
+4. **Configuration**: Use `idf.py menuconfig` to modify "Component - LEDRGB settings" and "Component - DalyBMS GPIO Settings" as needed.
+5. **Build**: Use `idf.py build` to compile your project.
+6. **Flash**: Use `idf.py flash` to flash the firmware to your ESP32*.
+7. **Monitor**: Use `idf.py monitor` to monitor the serial messages sent by the ESP32*.
 
 ### Running with ROS 2
 
