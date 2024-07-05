@@ -6,14 +6,12 @@ This project interfaces a Daly BMS with an ESP32 microcontroller using the ESP-I
 
 The main components of the project include:
 
-root directori
 - **main.cpp**: Main entry point of the application.
 - **battery_state.cpp/hpp**: Source and header files for managing the battery state.
 - **esp32_serial_transport.c/h**: Source and header files for handling serial transport specific to ESP32.
 - **gpio_handler.cpp/hpp**: Source and header files for managing GPIO interactions.
 - **uros_entities.cpp/hpp**: Source and header files defining entities for micro-ROS integration.
 - **CMakeLists.txt**: CMake configuration file to compile the project.
-- **component.mk**: Component makefile.
 - **Kconfig.projbuild**: Project configuration for ESP-IDF.
 - **sdkconfig.defaults**: Default SDK configuration.
 - **app-colcon.meta**: Metadata for Colcon build system.
