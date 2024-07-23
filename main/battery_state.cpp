@@ -11,6 +11,10 @@
 #define WATCHDOG_INTERVAL_MINUTES (CONFIG_DALYBMS_WD_INTERVAL_MINUTES)
 #define WATCHDOG_INTERVAL_MS (WATCHDOG_INTERVAL_MINUTES * 60 * 1000)
 
+#define BATTERY_LOCATION "BUS0"
+#define BATTERY_SERIAL_NUMBER "LO198202"
+#define BATTERY_TECHNOLOGY sensor_msgs__msg__BatteryState__POWER_SUPPLY_TECHNOLOGY_LION
+
 sensor_msgs__msg__BatteryState battery_state_msg;
 extern DalyBMS bms_handler;
 extern rcl_publisher_t publisher;
@@ -28,10 +32,14 @@ uint8_t determine_battery_health(const std::vector<std::string>& errors) {
         if (error.find("temp high") != std::string::npos) {
             return sensor_msgs__msg__BatteryState__POWER_SUPPLY_HEALTH_OVERHEAT;
         }
-        if (error.find("SOC high level") != std::string::npos) {
+        if (error.find("SOC high level") != std::string::npos || 
+            error.find("Sum volt high level") != std::string::npos || 
+            error.find("Cell volt high level") != std::string::npos) {
             return sensor_msgs__msg__BatteryState__POWER_SUPPLY_HEALTH_OVERVOLTAGE;
         }
-        if (error.find("SOC low level") != std::string::npos) {
+        if (error.find("SOC low level") != std::string::npos || 
+            error.find("Sum volt low level") != std::string::npos || 
+            error.find("Cell volt low level") != std::string::npos) {
             return sensor_msgs__msg__BatteryState__POWER_SUPPLY_HEALTH_DEAD;
         }
     }
@@ -53,6 +61,8 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time) {
         battery_state_msg.current = soc["current"]/10.0;
         battery_state_msg.percentage = soc["soc_percent"]/1000.0;
 
+        battery_state_msg.capacity = status["capacity_ah"];
+
         if (!rosidl_runtime_c__float__Sequence__init(&battery_state_msg.cell_voltage, cell_voltages.size())) {
             ESP_LOGE(TAG, "Failed to initialize cell_voltage sequence");
             return;
@@ -72,12 +82,18 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time) {
         }
         float average_temperature = temperatures.size() > 0 ? sum_temperature / temperatures.size() : 0.0;
         battery_state_msg.temperature = average_temperature;
+        if (mosfet_status["bms_state"] == 0) {
+            battery_state_msg.power_supply_status = sensor_msgs__msg__BatteryState__POWER_SUPPLY_STATUS_NOT_CHARGING;
+        }
+        if (mosfet_status["bms_state"] == 1) {
+            battery_state_msg.power_supply_status = sensor_msgs__msg__BatteryState__POWER_SUPPLY_STATUS_CHARGING;
+        }     
+        if (mosfet_status["bms_state"] == 2) {
+            battery_state_msg.power_supply_status = sensor_msgs__msg__BatteryState__POWER_SUPPLY_STATUS_DISCHARGING;
+        }
 
-        battery_state_msg.power_supply_status = mosfet_status["charging_mosfet"]
-                ? sensor_msgs__msg__BatteryState__POWER_SUPPLY_STATUS_CHARGING
-                : sensor_msgs__msg__BatteryState__POWER_SUPPLY_STATUS_DISCHARGING;
-
-        battery_state_msg.power_supply_technology = sensor_msgs__msg__BatteryState__POWER_SUPPLY_TECHNOLOGY_LION;
+        battery_state_msg.power_supply_technology = BATTERY_TECHNOLOGY;
+        battery_state_msg.present = true;
         battery_state_msg.power_supply_health = determine_battery_health(errors);
         
         rcl_ret_t ret = rcl_publish(&publisher, &battery_state_msg, NULL);
