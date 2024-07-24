@@ -1,9 +1,12 @@
 [submodule "components/ESP_DalyBMS"]
 	path = components/ESP_DalyBMS
 	url = https://github.com/ioio2995/ESP_DalyBMS.git
+	branch = master
 [submodule "components/ESP_IC_Led_RGB"]
 	path = components/ESP_IC_Led_RGB
 	url = https://github.com/ioio2995/ESP_IC_Led_RGB.git
+	branch = master
 [submodule "components/micro_ros_espidf_component"]
 	path = components/micro_ros_espidf_component
 	url = https://github.com/micro-ROS/micro_ros_espidf_component.git
+	branch = master
