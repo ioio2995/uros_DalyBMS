@@ -1,0 +1,4 @@
+# Request (vide)
+---
+# Response (contient BatteryState)
+sensor_msgs/BatteryState battery_state
