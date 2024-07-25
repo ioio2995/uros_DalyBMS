@@ -1,4 +1,5 @@
-# uros_DalyBMS
+# DRAFT
+# uros_DalyBMS 
 
 This project interfaces a Daly BMS with an ESP32 microcontroller using the ESP-IDF framework and micro-ROS. The project is written in C++ and C, utilizing several components to handle serial communication, GPIO handling, and battery state management.
 
@@ -58,7 +59,7 @@ To run the micro-ROS agent and interact with the service, follow these steps:
     ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyUSB0
     ```
 
-2. **Echo the topic data**:
+2. **Call service**:
     ```sh
     ros2 service call  /DalyBMS_Service dalybms_interfaces/srv/GetBatteryState "{}"
     ```
