@@ -2,7 +2,7 @@
 This project is a micro-ROS interface for Daly SMARTBMS. Developed on the ESP-IDF framework to run on the ESP32 family of microcontrollers, it aims to provide a ROS service to obtain battery health information.
 
 ## Hardware
-![3D_PCB_uros_DalyBMS](./docs/media/3D_PCB_uros_DalyBMS.jpg)  
+![3D_PCB_uros_DalyBMS](./docs/media/3D_PCB_uros_DalyBMS.png)  
 A hardware base using a [ESP32-S3-Tiny](https://www.waveshare.com/wiki/ESP32-S3-Tiny) from Waveshare has also been developed.
 
 ### Schematic
