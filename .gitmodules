@@ -10,3 +10,7 @@
 	path = components/micro_ros_espidf_component
 	url = https://github.com/micro-ROS/micro_ros_espidf_component.git
 	branch = jazzy
+[submodule "extra_ros_packages/dalybms_interfaces"]
+	path = extra_ros_packages/dalybms_interfaces
+	url = https://github.com/ioio2995/dalybms_interfaces.git
+	branch = master
