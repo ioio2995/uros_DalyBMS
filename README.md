@@ -24,7 +24,7 @@ The DALY BMS wakeup is handled by the trigger_bms_wakeup function, which activat
 The discharge MOSFET is controlled via the set_discharge_mosfet function of the DalyBMS class. This function is called after a delay of 2 seconds following the BMS wakeup trigger.
 
 ## Additional Pins and Wakeup Procedure
-![DalyBMS_Pins](./doc/media/DalyBMS_Pins.jpg)  
+![DalyBMS_Pins](./docs/media/DalyBMS_Pins.jpg)  
 the DALY BMS has additional pins:
 
 - **J3-Pin_2** (Power Supply 3.3V): This pin is only part-time active as the BT dongle shall go to sleep.
