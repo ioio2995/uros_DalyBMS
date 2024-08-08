@@ -49,7 +49,7 @@ menu "Component - DalyBMS GPIO Settings"
     config DALYBMS_WAKEUP_PIN
         int "BMS wakeup pin"
         range 0 46
-        default 6
+        default 18
         help
             Select wakeup pin for DalyBMS connection.
 
